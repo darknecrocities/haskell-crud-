@@ -49,7 +49,7 @@ dependencies:
 -- boilerplate again….
 ```
 
-This goes for every library that is available on Stackage – the repository of libraries where stack pulls from. As I have mentioned earlier, not every dependency is present on Stackage. So, if you used a dependency that is not available on Stackage, then you must add that under the `extra-deps` in the `stack.yaml` file. For now, it is commented out since our project does not have dependencies yet.
+This goes for every library that is available on Stackage – the repository of libraries where Stack pulls from. As I have mentioned earlier, not every dependency is present on Stackage. So, if you used a dependency that is not available on Stackage, then you must add that under the `extra-deps` in the `stack.yaml` file. For now, it is commented out since our project does not have dependencies yet.
 
 Here’s mine for now (the acme-missiles library is just an example; you can delete it later):
 
