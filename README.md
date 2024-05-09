@@ -12,7 +12,9 @@ Follow the [instructions](https://www.haskell.org/downloads/) and recommendation
 
 ## Prerequisites
 
-I suggest that you check out Philipp Hagenlocher's playlist called ["Haskell for Imperative Programmers"](https://www.youtube.com/watch?v=Vgu82wiiZ90&list=PLe7Ei6viL6jGp1Rfu0dil1JH1SHk9bgDV). It provides a comprehensive guide to learning Haskell's syntax. Although most Haskell tutorials use Cabal to manage projects, I find Stack to be more user-friendly. Therefore, in this tutorial, we will be using Stack. You should ensure that Stack was installed when you installed Haskell. However, one disadvantage of Stack is that some packages are not available in its repository. But don't worry, we will discuss a workaround for this later.
+I suggest that you check out Philipp Hagenlocher's playlist called ["Haskell for Imperative Programmers"](https://www.youtube.com/watch?v=Vgu82wiiZ90&list=PLe7Ei6viL6jGp1Rfu0dil1JH1SHk9bgDV). It provides a comprehensive guide to learning Haskell's syntax. 
+
+Although most Haskell tutorials use Cabal to manage projects, I find Stack to be more user-friendly. Therefore, in this tutorial, we will be using Stack. You should ensure that Stack was installed when you installed Haskell. However, one disadvantage of Stack is that some packages are not available in its repository (Stackage). But don't worry, we will discuss a workaround for this later.
 
 ## Setting the Project Environment
 
