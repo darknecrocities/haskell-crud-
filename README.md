@@ -1,5 +1,24 @@
 # The Haskell CRUD App Tutorial I Wish I Had
 
+## Table of Contents
+
+- [Rationale](#rationale)
+- [📥 Installation](#installation)
+- [📚 Prerequisites](#prerequisites)
+- [🌱 Setting the Project Environment](#setting-the-project-environment)
+- [📦 Managing Dependencies](#managing-dependencies)
+- [💻 Coding](#coding)
+  - [🏷️ Data types](#data-types)
+  - [⚙️ Non-CRUD Operation Functions](#non-crud-operation-functions)
+  - [🛠️ CRUD Helper Functions](#crud-helper-functions)
+  - [📝 Create Operation](#create-operation)
+  - [📖 Read Operation](#read-operation)
+  - [🖥️ Display Operation](#display-operation)
+  - [✏️ Update Operation](#update-operation)
+  - [❌ Delete Operation](#delete-operation)
+  - [🔧 Miscellaneous Operation](#miscellaneous-operation)
+- [🏆 Conclusion](#conclusion)
+  
 ## Rationale
 
 
@@ -7,16 +26,16 @@ For our Design and Implementation of Programming Language (DIPROGLANG) course, w
 
 Disclaimer: Please note that this tutorial is not exhaustive, but rather a reference for those who may need it.
 
-## Installation.  
+## 📥 Installation  
 Follow the [instructions](https://www.haskell.org/downloads/) and recommendations on how to install Haskell on your device.
 
-## Prerequisites
+## 📚 Prerequisites
 
 I suggest that you check out Philipp Hagenlocher's playlist called ["Haskell for Imperative Programmers"](https://www.youtube.com/watch?v=Vgu82wiiZ90&list=PLe7Ei6viL6jGp1Rfu0dil1JH1SHk9bgDV). It provides a comprehensive guide to learning Haskell's syntax. 
 
 Although most Haskell tutorials use Cabal to manage projects, I find Stack to be more user-friendly. Therefore, in this tutorial, we will be using Stack. You should ensure that Stack was installed when you installed Haskell. However, one disadvantage of Stack is that some packages are not available in its repository (Stackage). But don't worry, we will discuss a workaround for this later.
 
-## Setting the Project Environment
+## 🌱 Setting the Project Environment
 
 Before starting the project, we need to create a project directory. This will make installing and managing dependencies easier in the long run. Create a dedicated folder for the project. In my case, I’ll call it food-storage-tutorial. Enter the `stack new <directory-name>` command in your terminal and this should create and initialize in the directory name you provided.
 
@@ -30,7 +49,7 @@ Thankfully, Stack provides us with the `stack install --file-watch` command whic
 
 This will also give us warning and error messages while building our executable which is helpful to debug our program. It’s good to **read the error messages** provided by Stack because they may contain solutions, particularly when it comes to managing dependencies.
 
-## Managing Dependencies
+## 📦 Managing Dependencies
 
 While doing this program, you will eventually install libraries and add them as dependencies. As I have mentioned earlier, some of the files that were generated when entering the ` stack new food-storage-tutorial` are just boilerplate. However, three (3) important files in there that are used for managing dependencies, namely: `package.yaml`, `<your-directory-name>.cabal` and `stack.yaml`.  
   
@@ -64,7 +83,7 @@ Here’s mine for now (the acme-missiles library is just an example; you can del
 # boilerplate again…  
 ```
 
-## Coding
+## 💻 Coding
 
 Finally, we reached the coding part. As I have mentioned, this will not be an in-depth tutorial wherein I teach every nook and cranny of code. Instead, I am just showcasing how CRUD operations can be implemented in Haskell. With that said let’s proceed with the coding.
 
@@ -159,7 +178,7 @@ dependencies:
 - split  
 ```
 
-### Data types
+### 🏷️ Data types
 Let's start with the data types that we will be using throughout the program:
 ```
 data  FoodRecord = FoodRecord
@@ -179,7 +198,7 @@ data  FoodCategory = Dairy
 ```
 The `FoodRecord` data type essentially holds all of the information that a food will have. In a way, it exhibits some of the concepts of object-oriented programming. This is also true for the `FoodCategory` data type.
 
-### Non-CRUD Operation Functions
+### ⚙️ Non-CRUD Operation Functions
 Now, let's proceed with the non-CRUD operation functions or other helper functions:
 ```
 getCurrentDate :: IO  Day
@@ -355,7 +374,7 @@ All of the functions starting with get (e.g., `getInput`, `getID `, `getCategory
 
 Lastly,  the `mainMenu` function acts as the main menu of the program and is the first one to show up once you open the program.
 
-### CRUD Helper Functions
+### 🛠️ CRUD Helper Functions
 Now, let's create the CRUD helper functions:
 
 ```  
@@ -416,7 +435,7 @@ The `formatRecord` function takes a `FoodRecord` data type and converts it to a 
 
 The `csvFile` is a `String` which is the name of the CSV file you want to create. On the other hand, the `createCsvFile` function, as its name suggests, creates a CSV file if one does not exist yet.
 
-### Create Operation
+### 📝 Create Operation
 Let's now proceed with the CRUD operations. Let's start with the Create operation which is the easiest to implement from the CRUD operations:
 
 ```  
@@ -464,7 +483,7 @@ The `appendRecord` function takes a `FoodRecord` as an argument and applies the 
 
 The `addRecord` function is the menu shown when adding a food record. It calls the other functions that get the fields of a record.
 
-### Read Operation
+### 📖 Read Operation
 Let’s now proceed with the Read operation:
 
 ```  
@@ -486,7 +505,7 @@ readCsvFile file = do
 
 The `readCsvFile` reads the CSV file and catches any read errors using the `handleReadError` function which just shows the exception that happened. It returns a list of `FoodRecord` since the `parseToRecord` function is applied to each element in the list generated by the `(lines csvData)`.
 
-### Display Operation
+### 🖥️ Display Operation
 The display operation is not a part of the CRUD acronym but it is essential for any CRUD app. It is also somewhat an extension of the read operation since you have to read the database (the CSV file in our case) to display all the records inside it.
 
 Here is the display operation:
@@ -529,7 +548,7 @@ The `displayRecords` function displays the records if there are any, otherwise i
 
 The `printRowRecord` function takes the fields of a `FoodRecord` as an argument and prints them. It adds an asterisk `*` when the food is already spoiled.
 
-### Update Operation
+### ✏️ Update Operation
 The update operation is probably the hardest to implement in my opinion. But here is how I implemented mine:
 
 ```
@@ -641,7 +660,7 @@ In simpler terms, this whole expression is saying: "Get a new category using the
 
 Lastly, the `editRecord` function acts as the interface for the user. It applies all the edit-related functions.
 
-### Delete Operation
+### ❌ Delete Operation
 The delete operation is similar to the the update operation, but instead of editing the record you delete it.
 
 Here is how I implemented it:
@@ -700,7 +719,7 @@ The `deleteRecordFromFile` function is the inverse of the `updateFunction` earli
 
 The `deleteRecord` function acts as the interface that the user interacts with. 
 
-### Miscellaneous Operation
+### 🔧 Miscellaneous Operation
 These are functions that are not a part of the original CRUD operations, but similar to the Display operation, they extend the CRUD operations. Furthermore, they were required in the making of the final project requirement.
 
 ```
@@ -794,7 +813,7 @@ It is used in tandem with the `removeSpoiledItems` function which is an extensio
 
 The `displayStockLevels` function, on the other hand, just displays the current stock of each food record and calculates the amount of stock it needs to reach the required stock level (restock number). The required stock level is just an arbitrary number we set to 100. If the restock number is negative, then it prints out `N/A` instead of showing a negative number.
 
-## Conclusion
+## 🏆 Conclusion
 
 I hope this tutorial/guide/reference helped you accomplish your Haskell code. While cramming the final project requirement, I was trying to find a reference like what I did since I find declarative code and Haskell's documentation hard to read.
 
